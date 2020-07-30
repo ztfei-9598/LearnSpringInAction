@@ -9,6 +9,25 @@ public class Ingredient {
     private final String name;
     private final Type type;
     public static enum Type {
-        WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+        /**
+         * 包起来
+         */
+        WRAP,
+        /**
+         * 蛋白质
+         */
+        PROTEIN,
+        /**
+         * 蔬菜
+         */
+        VEGGIES,
+        /**
+         * 奶酪
+         */
+        CHEESE,
+        /**
+         * 酱油
+         */
+        SAUCE
     }
 }
