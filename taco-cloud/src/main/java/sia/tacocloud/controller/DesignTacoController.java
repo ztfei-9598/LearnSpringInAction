@@ -17,10 +17,30 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author zhangtengfei
+ */
+/**
+ * Lombok所提供的注解，在运行时，它会在这个类中自动生成一个SLF4J（Simple Logging Facade for Java）Logger。
+ */
 @Slf4j
+/**
+ * 将这个类识别为控制器，并且将其作为组件扫描的候选者，
+ * 所以Spring会发现它并自动创建一个DesignTacoController实例，并将该实例作为Spring应用上下文中的bean
+ */
 @Controller
+/**
+ * 能够指定该控制器所处理的请求类型
+ */
 @RequestMapping("/design")
 public class DesignTacoController {
+    /**
+     * 是一个相对较新的注解，是在Spring 4.3引入的。
+     * 在Spring 4.3之前，你可能需要使用方法级别的@RequestMapping注解作为替代：
+     * @GetMapping
+     * @param model
+     * @return
+     */
     @GetMapping
     public String showDesignForm(Model model) {
         List<Ingredient> ingredients = Arrays.asList(
@@ -35,10 +55,10 @@ public class DesignTacoController {
                 new Ingredient("SLSA", "Salsa", Type.SAUCE),
                 new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
         );
+        //Model对象负责在控制器和展现数据的视图之间传递数据
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
-            model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredients, type));
+            model.addAttribute(type.toString().toLowerCase(),filterByType(ingredients, type));
         }
         model.addAttribute("design", new Taco());
         return "design";
