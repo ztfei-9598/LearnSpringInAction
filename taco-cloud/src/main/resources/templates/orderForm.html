@@ -6,6 +6,8 @@
     <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <body>
+<!--如果不指定action，那么表单将会以HTTP POST的形式提交到与展现该表单相同的URL上。
+在这里，我们明确指明表单要POST提交到“/orders”上（使用Thymeleaf的@{...}操作符指定相对上下文的路径）。-->
 <form method="POST" th:action="@{/orders}" th:object="${order}">
     <h1>Order your taco creations!</h1>
     <img th:src="@{/images/TacoCloud.png}"/>
@@ -36,6 +38,11 @@ Please correct the problems below and resubmit.
     <h3>Here's how I'll pay...</h3>
     <label for="ccNumber">Credit Card #: </label>
     <input type="text" th:field="*{ccNumber}" value="378267634605637"/>
+    <!--    
+    <span>元素使用class属性来为错误添加样式，以引起用户的注意
+    th:if属性来决定是否要显示该元素。 fields属性的hasErrors()方法会检查ccNumber域是否存在错误，如果存在，就将会渲染<span>
+    th:errors属性引用了ccNumber输入域，如果该输入域存在错误，那么它会将<span>元素的占位符内容替换为校验信息。
+    -->
     <span class="validationError"
           th:if="${#fields.hasErrors('ccNumber')}"
           th:errors="*{ccNumber}">CC Num Error</span>

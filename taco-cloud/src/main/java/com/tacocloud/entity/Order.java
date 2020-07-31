@@ -1,4 +1,4 @@
-package sia.tacocloud;
+package com.tacocloud.entity;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -32,6 +32,9 @@ public class Order {
     @NotBlank(message="Zip code is required")
     private String zip;
 
+    /**
+     * 银行卡号
+     */
     @CreditCardNumber(message="Not a valid credit card number")
     private String ccNumber;
 
@@ -39,6 +42,9 @@ public class Order {
             message="Must be formatted MM/YY")
     private String ccExpiration;
 
+    /**
+     * 确保它的值包含3位数字
+     */
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
 

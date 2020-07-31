@@ -1,4 +1,4 @@
-package sia.tacocloud;
+package com.tacocloud.entity;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
